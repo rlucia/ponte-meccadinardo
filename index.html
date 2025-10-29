@@ -33,7 +33,7 @@
     p.lead{color:var(--muted)}
     .two{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
     .two>div{min-width:0}
-    iframe.map{width:100%;height:360px;border:0;border-radius:14px}
+    .map{width:100%;height:360px;border-radius:14px;overflow:hidden}
     .timeline{position:relative;margin:12px 0;padding-left:18px}
     .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.12)}
     .timeline .t{position:relative;margin:12px 0;padding-left:16px}
@@ -50,6 +50,12 @@
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px}
     @media (max-width:900px){.two{grid-template-columns:1fr}}
   </style>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
 </head>
 <body>
   <header>
@@ -97,11 +103,10 @@
     <div>
       <h2>Mappa e deviazioni</h2>
       <p class="small">Se la tua rotta è diversa, invia feedback per migliorare la stima.</p>
-      <!-- Sostituisci le coordinate sotto con quelle reali del ponte -->
-      <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=15.709%2C40.79%2C15.79%2C40.84&amp;layer=mapnik&amp;marker=40.810472%2C15.719196"></iframe>
-      <p class="small">Mappa: OpenStreetMap. Per una mappa più evoluta puoi integrare <span class="code">Leaflet.js</span> o <span class="code">uMap</span>.</p>
-    </div>
-  </section>
+      <div id="map" class="map" role="application" aria-label="Mappa interattiva del ponte di Meccadinardo"></div>
+      <p class="small">Mappa interattiva realizzata con <span class="code">Leaflet.js</span> e dati © OpenStreetMap contributors.</p>
+  </div>
+</section>
 
   <section class="wrap" id="impatto">
     <h2>Impatto sulla comunità</h2>
@@ -165,6 +170,11 @@
     <p class="small">Sito civico senza fini di lucro. Dati personali: evita di inviare informazioni sensibili. © <span id="year"></span> Comitato cittadino per il Ponte di Meccadinardo.</p>
   </footer>
 
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
   <script>
     // === CONFIGURAZIONE RAPIDA ===
     // 1) Imposta qui la data di chiusura (ISO YYYY-MM-DD)
@@ -240,11 +250,31 @@ Note:
       document.getElementById('btn-adesione').href = `mailto:comitato.ponte.meccadinardo@example.org?subject=${subj2}&body=${body2}`;
     }
 
+    function initMap(){
+      const map = L.map('map', {
+        scrollWheelZoom: false,
+        attributionControl: false
+      }).setView([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon], 15);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      L.marker([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon]).addTo(map).bindPopup(
+        '<strong>Ponte di Meccadinardo</strong><br />SP ex SS93'
+      );
+
+      L.control.attribution({ prefix: false }).addTo(map);
+    }
+
     function init(){
       updateCounters();
       renderUpdates();
       buildMailto();
       document.getElementById('year').textContent = new Date().getFullYear();
+      initMap();
     }
 
     document.addEventListener('DOMContentLoaded', init);
