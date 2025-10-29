@@ -48,7 +48,9 @@
     .stack{display:flex;flex-wrap:wrap;gap:10px}
     .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px}
-    .routes-list{margin-top:18px;display:grid;gap:14px}
+    .routes-section{margin-top:32px}
+    .routes-title{margin:0 0 10px;font-size:20px}
+    .routes-list{margin-top:18px;display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
     .route-card{background:linear-gradient(180deg,rgba(123,182,255,.08),rgba(18,26,43,.9));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;cursor:pointer}
     .route-card:hover{transform:translateY(-2px);border-color:rgba(123,182,255,.35);box-shadow:0 14px 28px rgba(0,0,0,.32)}
     .route-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -60,6 +62,7 @@
     .routes-list li{margin-bottom:6px}
     .routes-meta{font-size:13px;color:var(--muted);margin-top:10px}
     @media (max-width:900px){.two{grid-template-columns:1fr}}
+    @media (max-width:700px){.routes-list{grid-template-columns:1fr}}
   </style>
   <link
     rel="stylesheet"
@@ -96,26 +99,31 @@
     </div>
   </header>
 
-  <section class="wrap two" id="situazione">
-    <div>
-      <h2>Situazione attuale</h2>
-      <p class="lead">Sabato scorso sono arrivate segnalazioni dai cittadini; a seguire i tecnici della Provincia hanno eseguito un sopralluogo e la Provincia di Potenza ha disposto <strong>la chiusura immediata del ponte di Meccadinardo</strong> sulla <strong>SP ex SS93</strong>. Questa pagina raccoglie informazioni, impatti e una richiesta civica: <em>trasparenza, tempi e aggiornamenti</em>.</p>
+  <section class="wrap" id="situazione">
+    <div class="two">
+      <div>
+        <h2>Situazione attuale</h2>
+        <p class="lead">Sabato scorso sono arrivate segnalazioni dai cittadini; a seguire i tecnici della Provincia hanno eseguito un sopralluogo e la Provincia di Potenza ha disposto <strong>la chiusura immediata del ponte di Meccadinardo</strong> sulla <strong>SP ex SS93</strong>. Questa pagina raccoglie informazioni, impatti e una richiesta civica: <em>trasparenza, tempi e aggiornamenti</em>.</p>
 
-      <div class="timeline">
-        <div class="t"><strong>Segnalazioni dei cittadini</strong> ➝ criticità riscontrate sul ponte</div>
-        <div class="t"><strong>Sopralluogo tecnico</strong> ➝ accertamenti della Provincia</div>
-        <div class="t"><strong>Ordinanza di chiusura</strong> ➝ tutela sicurezza</div>
-        <div class="t"><strong>Richiesta pubblica</strong> ➝ piano interventi e comunicazioni periodiche</div>
+        <div class="timeline">
+          <div class="t"><strong>Segnalazioni dei cittadini</strong> ➝ criticità riscontrate sul ponte</div>
+          <div class="t"><strong>Sopralluogo tecnico</strong> ➝ accertamenti della Provincia</div>
+          <div class="t"><strong>Ordinanza di chiusura</strong> ➝ tutela sicurezza</div>
+          <div class="t"><strong>Richiesta pubblica</strong> ➝ piano interventi e comunicazioni periodiche</div>
+        </div>
+
+        <p class="small">Riferimenti: Ordinanza di chiusura (numero e link quando disponibile), eventuali comunicati dei Comuni interessati.</p>
       </div>
 
-      <p class="small">Riferimenti: Ordinanza di chiusura (numero e link quando disponibile), eventuali comunicati dei Comuni interessati.</p>
+      <div>
+        <h2>Mappa e deviazioni</h2>
+        <p class="small">Se la tua rotta è diversa, invia feedback per migliorare la stima.</p>
+        <div id="map" class="map" role="application" aria-label="Mappa interattiva del ponte di Meccadinardo"></div>
+      </div>
     </div>
 
-    <div>
-      <h2>Mappa e deviazioni</h2>
-      <p class="small">Se la tua rotta è diversa, invia feedback per migliorare la stima.</p>
-      <div id="map" class="map" role="application" aria-label="Mappa interattiva del ponte di Meccadinardo"></div>
-      <h3 style="margin-top:18px;font-size:20px">Percorsi alternativi via SS658 (Dragonetti)</h3>
+    <div class="routes-section">
+      <h3 class="routes-title">Percorsi alternativi via SS658 (Dragonetti)</h3>
       <p class="small">Le tratte suggerite evitano il ponte di Meccadinardo e sfruttano lo svincolo della SS658 a Dragonetti.</p>
       <div id="routes" class="routes-list" aria-live="polite"></div>
       <p class="small">Mappa interattiva realizzata con <span class="code">Leaflet.js</span> e dati © OpenStreetMap contributors.</p>
