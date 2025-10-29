@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RIDATECI IL PONTE DI MECCADINARDO – SP ex SS93</title>
+  <meta name="description" content="Iniziativa civica per chiedere trasparenza e tempi certi sul ripristino del ponte di Meccadinardo (SP ex SS93) – Provincia di Potenza." />
+  <meta property="og:title" content="Ridateci il Ponte di Meccadinardo" />
+  <meta property="og:description" content="Chiediamo alla Provincia di Potenza tempi chiari e aggiornamenti pubblici sulla riapertura." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Ponte+di+Meccadinardo" />
+  <meta property="og:locale" content="it_IT" />
+  <style>
+    :root{
+      --bg:#0b1220;--fg:#eaf0ff;--muted:#b6c2ff;--accent:#7bb6ff;--warn:#ffd166;--danger:#ff6666;--ok:#66ffa6;--card:#121a2b;--edge:#1a2742
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{padding:64px 24px 32px;background:linear-gradient(180deg,rgba(123,182,255,.18),transparent)}
+    header .title{font-size:clamp(28px,5vw,48px);font-weight:800;margin:0 0 12px}
+    header .subtitle{font-size:clamp(16px,3.2vw,22px);color:var(--muted);max-width:900px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:28px 0}
+    .card{background:linear-gradient(180deg,var(--card),var(--edge));border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .kpi{font-size:34px;font-weight:800}
+    .kpi small{font-weight:600;color:var(--muted);font-size:13px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:999px;background:var(--accent);color:#081427;font-weight:800;box-shadow:0 8px 20px rgba(123,182,255,.35)}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+    section{padding:32px 24px}
+    h2{margin:0 0 16px;font-size:26px}
+    p.lead{color:var(--muted)}
+    .two{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+    .two>div{min-width:0}
+    iframe.map{width:100%;height:360px;border:0;border-radius:14px}
+    .timeline{position:relative;margin:12px 0;padding-left:18px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.12)}
+    .timeline .t{position:relative;margin:12px 0;padding-left:16px}
+    .timeline .t::before{content:"";position:absolute;left:-2px;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(123,182,255,.2)}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.06);font-weight:600}
+    .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .quote{background:linear-gradient(180deg,var(--card),var(--edge));border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px}
+    .quote p{margin:0;color:#d7e0ff}
+    .quote .who{margin-top:10px;color:var(--muted);font-size:14px}
+    footer{padding:28px 24px;border-top:1px dashed rgba(255,255,255,.14);color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+    .stack{display:flex;flex-wrap:wrap;gap:10px}
+    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px}
+    @media (max-width:900px){.two{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="pill">🛣️ SP ex SS93 • Ponte di Meccadinardo</p>
+      <h1 class="title">RIDATECI IL PONTE DI MECCADINARDO</h1>
+      <p class="subtitle">Dal <span id="date-closure" class="code"></span>, la chiusura immediata disposta dalla Provincia di Potenza crea gravi disagi a famiglie, lavoratori e imprese. Chiediamo <strong>tempi chiari</strong>, un <strong>piano pubblico di intervento</strong> e <strong>aggiornamenti periodici</strong> fino alla riapertura in sicurezza.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="kpi"><span id="days-closed">--</span> <small>giorni di chiusura</small></div>
+          <p class="small">Contatore aggiornato automaticamente dalla data di chiusura.</p>
+        </div>
+        <div class="card">
+          <div class="kpi" id="extra-km">+— km</div>
+          <p class="small">Deviazione media stimata per i collegamenti tra le due sponde <span class="code">(modifica nel codice)</span>.</p>
+        </div>
+        <div class="card">
+          <div class="kpi">#RiapriteIlPonte</div>
+          <p class="small">Usa l'hashtag nelle condivisioni per dare visibilità all'iniziativa.</p>
+        </div>
+      </div>
+      <div class="stack">
+        <a class="btn" id="btn-mail" href="#">Scrivi all'Ufficio Viabilità</a>
+        <a class="btn secondary" id="btn-pec" href="#">Invia PEC al Protocollo</a>
+        <a class="btn secondary" href="#firma">Aderisci / Sostieni</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="wrap two" id="situazione">
+    <div>
+      <h2>Situazione attuale</h2>
+      <p class="lead">Sabato scorso sono arrivate segnalazioni dai cittadini; a seguire i tecnici della Provincia hanno eseguito un sopralluogo e la Provincia di Potenza ha disposto <strong>la chiusura immediata del ponte di Meccadinardo</strong> sulla <strong>SP ex SS93</strong>. Questa pagina raccoglie informazioni, impatti e una richiesta civica: <em>trasparenza, tempi e aggiornamenti</em>.</p>
+
+      <div class="timeline">
+        <div class="t"><strong>Segnalazioni dei cittadini</strong> ➝ criticità riscontrate sul ponte</div>
+        <div class="t"><strong>Sopralluogo tecnico</strong> ➝ accertamenti della Provincia</div>
+        <div class="t"><strong>Ordinanza di chiusura</strong> ➝ tutela sicurezza</div>
+        <div class="t"><strong>Richiesta pubblica</strong> ➝ piano interventi e comunicazioni periodiche</div>
+      </div>
+
+      <p class="small">Riferimenti: Ordinanza di chiusura (numero e link quando disponibile), eventuali comunicati dei Comuni interessati.</p>
+    </div>
+
+    <div>
+      <h2>Mappa e deviazioni</h2>
+      <p class="small">Se la tua rotta è diversa, invia feedback per migliorare la stima.</p>
+      <!-- Sostituisci le coordinate sotto con quelle reali del ponte -->
+      <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=15.709%2C40.79%2C15.79%2C40.84&amp;layer=mapnik&amp;marker=40.815%2C15.750"></iframe>
+      <p class="small">Mappa: OpenStreetMap. Per una mappa più evoluta puoi integrare <span class="code">Leaflet.js</span> o <span class="code">uMap</span>.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="impatto">
+    <h2>Impatto sulla comunità</h2>
+    <div class="impact-grid">
+      <div class="quote"><p>«Per andare al lavoro impiego 20 minuti in più al giorno.»</p><div class="who">– Lavoratrice pendolare</div></div>
+      <div class="quote"><p>«Consegne ritardate e costi extra di carburante.»</p><div class="who">– Piccola impresa locale</div></div>
+      <div class="quote"><p>«Ambulanze e servizi pubblici devono allungare il percorso.»</p><div class="who">– Cittadino</div></div>
+      <div class="quote"><p>«Scuolabus in ritardo, famiglie in difficoltà con gli orari.»</p><div class="who">– Genitore</div></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="chiediamo">
+    <h2>Cosa chiediamo</h2>
+    <ul>
+      <li>Pubblicare un <strong>piano di intervento</strong> con fasi e <strong>tempi indicativi</strong>.</li>
+      <li>Istituire un <strong>aggiornamento settimanale</strong> sullo stato (sito, social o albo pretorio).</li>
+      <li>Definire e comunicare <strong>percorsi alternativi ufficiali</strong> con segnaletica provvisoria.</li>
+      <li>Indicare il <strong>RUP</strong> (Responsabile Unico del Procedimento) e i contatti del cantiere.</li>
+    </ul>
+  </section>
+
+  <section class="wrap" id="contatti">
+    <h2>Chi deve rispondere</h2>
+    <div class="contact-grid">
+      <div class="card">
+        <h3 style="margin-top:0">Ufficio Viabilità – Provincia di Potenza</h3>
+        <p class="small">Dirigente (fonte IndicePA): <strong>Ing. Enrico Spera</strong></p>
+        <p class="small">Email: <a href="mailto:enrico.spera@provinciapotenza.it">enrico.spera@provinciapotenza.it</a><br>Telefono: <a href="tel:+390971417252">0971 417252</a></p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">PEC – Provincia di Potenza</h3>
+        <p class="small">Protocollo generale</p>
+        <p class="small">PEC: <a href="mailto:protocollo@pec.provinciapotenza.it">protocollo@pec.provinciapotenza.it</a></p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Indirizzo politico</h3>
+        <p class="small">Presidente della Provincia</p>
+        <p class="small">(contatto pubblico sul sito istituzionale)</p>
+      </div>
+    </div>
+    <p class="small">Nota: i referenti di progetto (RUP, DL) saranno aggiunti quando pubblicati negli atti.</p>
+  </section>
+
+  <section class="wrap" id="firma">
+    <h2>Aderisci / Sostieni</h2>
+    <p class="lead">Unisci la tua voce. Compila il modulo qui sotto oppure firma sulla piattaforma di petizioni che preferisci.</p>
+    <!-- Opzione 1: Form semplice via mailto. Per raccolte strutturate usa Google Forms/Change.org -->
+    <p>
+      <a class="btn" id="btn-adesione" href="#">Invia la tua adesione</a>
+      <a class="btn secondary" target="_blank" rel="noopener" href="https://www.change.org/">Vai su Change.org</a>
+    </p>
+    <p class="small">Se preferisci, scrivi a <a href="mailto:comitato.ponte.meccadinardo@example.org">comitato.ponte.meccadinardo@example.org</a></p>
+  </section>
+
+  <section class="wrap" id="aggiornamenti">
+    <h2>Aggiornamenti</h2>
+    <ul id="updates"></ul>
+    <p class="small">Modifica l'array <span class="code">UPDATES</span> nel codice per pubblicare nuovi aggiornamenti (reverse-chronological).</p>
+  </section>
+
+  <footer class="wrap">
+    <p class="small">Sito civico senza fini di lucro. Dati personali: evita di inviare informazioni sensibili. © <span id="year"></span> Comitato cittadino per il Ponte di Meccadinardo.</p>
+  </footer>
+
+  <script>
+    // === CONFIGURAZIONE RAPIDA ===
+    // 1) Imposta qui la data di chiusura (ISO YYYY-MM-DD)
+    const CLOSURE_DATE = '2025-10-25'; // "sabato scorso" rispetto al 29/10/2025
+
+    // 2) Stima deviazione media in km (modifica secondo i percorsi locali)
+    const EST_EXTRA_KM = 12; // esempio
+
+    // 3) Geografia (se vuoi usarla in futuro per calcoli o per Leaflet)
+    const BRIDGE_COORDS = { lat: 40.815, lon: 15.750 };
+
+    // 4) Contatti: aggiorna i mailto per pulsanti precompilati
+    const EMAIL_UFFICIO = 'enrico.spera@provinciapotenza.it';
+    const EMAIL_PEC = 'protocollo@pec.provinciapotenza.it';
+    const CC_POLITICO = '';
+
+    // 5) Aggiornamenti (mostrati in ordine inverso)
+    const UPDATES = [
+      { date: '2025-10-29', text: 'Online il sito civico. Raccolta adesioni aperta.' },
+      { date: '2025-10-25', text: 'Ordinanza di chiusura del ponte di Meccadinardo (in attesa del numero ufficiale).' }
+    ];
+
+    // === LOGICA PAGINA ===
+    const fmt = (d)=> new Date(d).toLocaleDateString('it-IT', { day:'2-digit', month:'long', year:'numeric' });
+
+    function updateCounters(){
+      const start = new Date(CLOSURE_DATE);
+      const now = new Date();
+      const ms = now - start;
+      const days = Math.max(0, Math.floor(ms / (1000*60*60*24)));
+      document.getElementById('days-closed').textContent = days.toString();
+      document.getElementById('date-closure').textContent = fmt(CLOSURE_DATE);
+      document.getElementById('extra-km').textContent = `+${EST_EXTRA_KM} km`;
+    }
+
+    function renderUpdates(){
+      const ul = document.getElementById('updates');
+      ul.innerHTML = '';
+      [...UPDATES].sort((a,b)=> (a.date<b.date?1:-1)).forEach(u=>{
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="code">${fmt(u.date)}</span> – ${u.text}`;
+        ul.appendChild(li);
+      });
+    }
+
+    function buildMailto(){
+      const subj = encodeURIComponent('Ponte di Meccadinardo – richiesta tempi e aggiornamenti pubblici');
+      const body = encodeURIComponent(
+`Gentile Ufficio Viabilità della Provincia di Potenza,
+
+in qualità di cittadina/o chiedo cortesemente di conoscere:
+1) le fasi e i tempi indicativi per il ripristino della sicurezza del ponte di Meccadinardo (SP ex SS93),
+2) la modalità con cui saranno pubblicati aggiornamenti periodici e percorsi alternativi ufficiali.
+
+La chiusura, disposta in data ${fmt(CLOSURE_DATE)}, incide in modo rilevante su famiglie, lavoratori e imprese. Vi chiediamo trasparenza e comunicazione programmata.
+
+Cordiali saluti,
+[Nome Cognome]
+[Comune]
+`);
+      document.getElementById('btn-mail').href = `mailto:${EMAIL_UFFICIO}${CC_POLITICO?('%2C'+CC_POLITICO):''}?subject=${subj}&body=${body}`;
+      document.getElementById('btn-pec').href = `mailto:${EMAIL_PEC}?subject=${subj}&body=${body}`;
+
+      const subj2 = encodeURIComponent('Adesione iniziativa civica – Ponte di Meccadinardo');
+      const body2 = encodeURIComponent(
+`Aderisco all'iniziativa civica per chiedere tempi chiari e aggiornamenti sulla riapertura del ponte di Meccadinardo.
+
+Nome Cognome:
+Comune:
+Contatto (facoltativo):
+Note:
+`);
+      document.getElementById('btn-adesione').href = `mailto:comitato.ponte.meccadinardo@example.org?subject=${subj2}&body=${body2}`;
+    }
+
+    function init(){
+      updateCounters();
+      renderUpdates();
+      buildMailto();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
