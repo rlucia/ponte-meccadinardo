@@ -48,6 +48,17 @@
     .stack{display:flex;flex-wrap:wrap;gap:10px}
     .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
     .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.07);padding:2px 6px;border-radius:6px}
+    .routes-list{margin-top:18px;display:grid;gap:14px}
+    .route-card{background:linear-gradient(180deg,rgba(123,182,255,.08),rgba(18,26,43,.9));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;cursor:pointer}
+    .route-card:hover{transform:translateY(-2px);border-color:rgba(123,182,255,.35);box-shadow:0 14px 28px rgba(0,0,0,.32)}
+    .route-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .route-card header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .route-card h3{margin:0;font-size:18px}
+    .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(123,182,255,.16);color:var(--accent);white-space:nowrap}
+    .routes-list p{margin:0;color:#d7e0ff}
+    .routes-list ul{margin:10px 0 0 18px;padding:0;color:var(--muted)}
+    .routes-list li{margin-bottom:6px}
+    .routes-meta{font-size:13px;color:var(--muted);margin-top:10px}
     @media (max-width:900px){.two{grid-template-columns:1fr}}
   </style>
   <link
@@ -104,9 +115,12 @@
       <h2>Mappa e deviazioni</h2>
       <p class="small">Se la tua rotta è diversa, invia feedback per migliorare la stima.</p>
       <div id="map" class="map" role="application" aria-label="Mappa interattiva del ponte di Meccadinardo"></div>
+      <h3 style="margin-top:18px;font-size:20px">Percorsi alternativi via SS658 (Dragonetti)</h3>
+      <p class="small">Le tratte suggerite evitano il ponte di Meccadinardo e sfruttano lo svincolo della SS658 a Dragonetti.</p>
+      <div id="routes" class="routes-list" aria-live="polite"></div>
       <p class="small">Mappa interattiva realizzata con <span class="code">Leaflet.js</span> e dati © OpenStreetMap contributors.</p>
-  </div>
-</section>
+    </div>
+  </section>
 
   <section class="wrap" id="impatto">
     <h2>Impatto sulla comunità</h2>
@@ -186,6 +200,91 @@
     // 3) Geografia (se vuoi usarla in futuro per calcoli o per Leaflet)
     const BRIDGE_COORDS = { lat: 40.810472, lon: 15.719196 };
 
+    const ROUTES = [
+      {
+        id: 'filiano-lagopesole',
+        name: 'Filiano ↔ Lagopesole',
+        color: '#7bb6ff',
+        summary: 'Percorso alternativo passando per lo svincolo Dragonetti della SS658, senza attraversare Meccadinardo.',
+        path: [
+          [40.8203, 15.6513],
+          [40.8268, 15.6649],
+          [40.8345, 15.7039],
+          [40.8425, 15.7145],
+          [40.8501, 15.6991]
+        ],
+        keyStops: [
+          { label: 'Filiano', coords: [40.8203, 15.6513] },
+          { label: 'Svincolo SS658 Dragonetti', coords: [40.8345, 15.7039] },
+          { label: 'Lagopesole', coords: [40.8501, 15.6991] }
+        ],
+        instructions: [
+          'Da Filiano dirigiti verso est (SP8) fino allo svincolo di Dragonetti.',
+          'Immettiti sulla SS658 in direzione nord (Lagopesole/Melfi).',
+          'Esci a Lagopesole e raggiungi il centro abitato seguendo la viabilità locale.',
+          'Per il rientro verso Filiano usa lo stesso innesto SS658, invertendo il senso di marcia.'
+        ],
+        distance: '≈ 20 km',
+        travelTime: '20–22 minuti'
+      },
+      {
+        id: 'filiano-potenza',
+        name: 'Filiano ↔ Potenza',
+        color: '#66ffa6',
+        summary: 'Itinerario consigliato che utilizza la SS658 verso sud, prendendo lo svincolo Dragonetti per raggiungere Potenza.',
+        path: [
+          [40.8203, 15.6513],
+          [40.8268, 15.6649],
+          [40.8345, 15.7039],
+          [40.807, 15.746],
+          [40.7645, 15.782],
+          [40.6758, 15.7759],
+          [40.6392, 15.8079]
+        ],
+        keyStops: [
+          { label: 'Filiano', coords: [40.8203, 15.6513] },
+          { label: 'Svincolo SS658 Dragonetti', coords: [40.8345, 15.7039] },
+          { label: 'Potenza', coords: [40.6392, 15.8079] }
+        ],
+        instructions: [
+          'Raggiungi Dragonetti da Filiano lungo la SP8 e prendi la rampa per la SS658.',
+          'Segui la SS658 verso Potenza, restando sulla superstrada e oltrepassando gli svincoli intermedi.',
+          'Esci a Potenza (svincolo Potenza Nord o successivi) per raggiungere il capoluogo senza attraversare Meccadinardo.',
+          'In direzione opposta, segui le indicazioni per Melfi/Filiano rientrando sulla SS658 da Potenza.'
+        ],
+        distance: '≈ 38 km',
+        travelTime: '32–35 minuti'
+      },
+      {
+        id: 'iscalunga-potenza',
+        name: 'Zona Artigianale D2 (Iscalunga) ↔ Potenza',
+        color: '#ffd166',
+        summary: 'Dal polo produttivo D2 conviene raggiungere rapidamente Dragonetti e proseguire sulla SS658 verso Potenza.',
+        path: [
+          [40.8042, 15.7098],
+          [40.8147, 15.7168],
+          [40.8345, 15.7039],
+          [40.807, 15.746],
+          [40.7645, 15.782],
+          [40.6758, 15.7759],
+          [40.6392, 15.8079]
+        ],
+        keyStops: [
+          { label: 'Zona Industriale D2 – Iscalunga', coords: [40.8042, 15.7098] },
+          { label: 'Svincolo SS658 Dragonetti', coords: [40.8345, 15.7039] },
+          { label: 'Potenza', coords: [40.6392, 15.8079] }
+        ],
+        instructions: [
+          'Dalla zona D2 imbocca via Iscalunga/SP8 verso Dragonetti evitando l’area del ponte.',
+          'Entrando sulla SS658 mantieni la direzione Potenza, sfruttando la superstrada per l’intero tragitto.',
+          'Esci a Potenza Nord (o allo svincolo più utile) e prosegui sulla viabilità urbana.',
+          'Per tornare alla zona D2 ripercorri la SS658 verso Melfi fino allo svincolo Dragonetti.'
+        ],
+        distance: '≈ 34 km',
+        travelTime: '28–30 minuti'
+      }
+    ];
+
     // 4) Contatti: aggiorna i mailto per pulsanti precompilati
     const EMAIL_UFFICIO = 'enrico.spera@provinciapotenza.it';
     const EMAIL_PEC = 'protocollo@pec.provinciapotenza.it';
@@ -251,23 +350,110 @@ Note:
       document.getElementById('btn-adesione').href = `mailto:comitato.ponte.meccadinardo@iscanet.com?subject=${subj2}&body=${body2}`;
     }
 
+    let MAP_INSTANCE;
+
+    function resetRouteStyles(){
+      ROUTES.forEach(route=>{
+        if(route.layer){
+          route.layer.setStyle(route.layerOptions);
+        }
+      });
+    }
+
+    function highlightRoute(route){
+      resetRouteStyles();
+      if(route.layer){
+        route.layer.setStyle({ color: route.color, weight: route.layerOptions.weight + 2, opacity: 1 });
+      }
+    }
+
+    function focusRoute(route){
+      if(route.layer && MAP_INSTANCE){
+        MAP_INSTANCE.flyToBounds(route.layer.getBounds().pad(0.12), { duration: 0.6 });
+      }
+    }
+
     function initMap(){
-      const map = L.map('map', {
+      MAP_INSTANCE = L.map('map', {
         scrollWheelZoom: false,
         attributionControl: false
-      }).setView([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon], 15);
+      }).setView([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon], 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
+      }).addTo(MAP_INSTANCE);
 
-      L.marker([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon]).addTo(map).bindPopup(
+      const featureGroup = L.featureGroup().addTo(MAP_INSTANCE);
+
+      L.marker([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon]).addTo(MAP_INSTANCE).bindPopup(
         '<strong>Ponte di Meccadinardo</strong><br />SP ex SS93'
       );
 
-      L.control.attribution({ prefix: false }).addTo(map);
+      ROUTES.forEach(route=>{
+        route.layerOptions = { color: route.color, weight: 5, opacity: .85 };
+        route.layer = L.polyline(route.path, { ...route.layerOptions, lineJoin:'round', lineCap:'round' }).addTo(MAP_INSTANCE);
+        route.layer.bindPopup(`<strong>${route.name}</strong><br />Percorso alternativo tramite SS658 a Dragonetti.`);
+        featureGroup.addLayer(route.layer);
+
+        route.markers = route.keyStops.map((stop, index)=>{
+          const marker = L.circleMarker(stop.coords, {
+            radius: index === 1 ? 7 : 5,
+            color: route.color,
+            weight: 2,
+            fillColor: route.color,
+            fillOpacity: index === 1 ? 0.9 : 0.7
+          }).addTo(MAP_INSTANCE);
+          marker.bindTooltip(stop.label, { direction: 'top', offset: [0, -8] });
+          featureGroup.addLayer(marker);
+          return marker;
+        });
+      });
+
+      MAP_INSTANCE.fitBounds(featureGroup.getBounds().pad(0.2));
+
+      L.control.attribution({ prefix: false }).addTo(MAP_INSTANCE);
+    }
+
+    function renderRoutes(){
+      const container = document.getElementById('routes');
+      if(!container) return;
+      container.innerHTML = '';
+
+      ROUTES.forEach(route=>{
+        const card = document.createElement('article');
+        card.className = 'route-card';
+        card.setAttribute('data-route', route.id);
+        card.setAttribute('tabindex', '0');
+        card.innerHTML = `
+          <header>
+            <h3>${route.name}</h3>
+            <span class="badge">SS658 • Dragonetti</span>
+          </header>
+          <p>${route.summary}</p>
+          <ul>${route.instructions.map(step=>`<li>${step}</li>`).join('')}</ul>
+          <p class="routes-meta">Distanza stimata: ${route.distance} • Tempo medio: ${route.travelTime}</p>
+        `;
+
+        card.addEventListener('mouseenter', ()=>highlightRoute(route));
+        card.addEventListener('mouseleave', resetRouteStyles);
+        card.addEventListener('focus', ()=>highlightRoute(route));
+        card.addEventListener('blur', resetRouteStyles);
+        card.addEventListener('click', ()=>{
+          highlightRoute(route);
+          focusRoute(route);
+        });
+        card.addEventListener('keydown', (evt)=>{
+          if(evt.key === 'Enter' || evt.key === ' '){
+            evt.preventDefault();
+            highlightRoute(route);
+            focusRoute(route);
+          }
+        });
+
+        container.appendChild(card);
+      });
     }
 
     function init(){
@@ -276,6 +462,7 @@ Note:
       buildMailto();
       document.getElementById('year').textContent = new Date().getFullYear();
       initMap();
+      renderRoutes();
     }
 
     document.addEventListener('DOMContentLoaded', init);
