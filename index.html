@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RIDATECI IL PONTE DI MECCADINARDO – SP ex SS93</title>
-  <meta name="description" content="Iniziativa civica per chiedere trasparenza e tempi certi sul ripristino del ponte di Meccadinardo (SP ex SS93) – Provincia di Potenza." />
-  <meta property="og:title" content="Ridateci il Ponte di Meccadinardo" />
-  <meta property="og:description" content="Chiediamo alla Provincia di Potenza tempi chiari e aggiornamenti pubblici sulla riapertura." />
+  <title>IL PONTE DI MECCADINARDO È RIAPERTO – SP ex SS93</title>
+  <meta name="description" content="Il ponte di Meccadinardo (SP ex SS93, agro di Filiano) è stato riaperto al traffico il 29 agosto 2026 dopo 309 giorni di chiusura. Cronologia, lavori eseguiti e fonti." />
+  <meta property="og:title" content="Il Ponte di Meccadinardo è riaperto" />
+  <meta property="og:description" content="Riaperto il 29 agosto 2026 dopo 309 giorni di chiusura: consolidamento statico delle arcate, rifacimento della sede stradale e nuova segnaletica." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Ponte+di+Meccadinardo" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Ponte+di+Meccadinardo+RIAPERTO" />
   <meta property="og:locale" content="it_IT" />
   <style>
     :root{
@@ -19,9 +19,9 @@
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
     .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    header{padding:64px 24px 32px;background:linear-gradient(180deg,rgba(123,182,255,.18),transparent)}
-    header .title{font-size:clamp(28px,5vw,48px);font-weight:800;margin:0 0 12px}
-    header .subtitle{font-size:clamp(16px,3.2vw,22px);color:var(--muted);max-width:900px}
+    body>header{padding:64px 24px 32px;background:linear-gradient(180deg,rgba(102,255,166,.18),transparent)}
+    body>header .title{font-size:clamp(28px,5vw,48px);font-weight:800;margin:0 0 12px}
+    body>header .subtitle{font-size:clamp(16px,3.2vw,22px);color:var(--muted);max-width:900px}
     .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:28px 0}
     .card{background:linear-gradient(180deg,var(--card),var(--edge));border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .kpi{font-size:34px;font-weight:800}
@@ -61,6 +61,23 @@
     .routes-list ul{margin:10px 0 0 18px;padding:0;color:var(--muted)}
     .routes-list li{margin-bottom:6px}
     .routes-meta{font-size:13px;color:var(--muted);margin-top:10px}
+    .pill.ok{background:rgba(102,255,166,.16);color:var(--ok)}
+    .kpi.ok{color:var(--ok)}
+    .btn.ok{background:var(--ok);color:#04240f;box-shadow:0 8px 20px rgba(102,255,166,.3)}
+    .banner{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(180deg,rgba(102,255,166,.14),rgba(18,26,43,.9));border:1px solid rgba(102,255,166,.35);border-radius:16px;padding:18px;margin:24px 0}
+    .banner .icon{font-size:28px;line-height:1}
+    .banner h2{margin:0 0 6px;font-size:20px;color:var(--ok)}
+    .banner p{margin:0;color:#d7e0ff}
+    .timeline .t.done::before{background:var(--ok);box-shadow:0 0 0 3px rgba(102,255,166,.2)}
+    .timeline .t .when{display:block;font-size:13px;color:var(--muted);margin-bottom:2px}
+    .works{margin:10px 0 0 18px;padding:0;color:#d7e0ff}
+    .works li{margin-bottom:6px}
+    .sources{margin:10px 0 0 18px;padding:0;color:var(--muted);font-size:13px}
+    .sources li{margin-bottom:4px}
+    details.archive{background:linear-gradient(180deg,var(--card),var(--edge));border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;margin-top:18px}
+    details.archive>summary{cursor:pointer;font-weight:700;color:var(--muted)}
+    details.archive[open]>summary{margin-bottom:12px}
+    #updates li{margin-bottom:8px}
     @media (max-width:900px){.two{grid-template-columns:1fr}}
     @media (max-width:700px){.routes-list{grid-template-columns:1fr}}
   </style>
@@ -74,64 +91,86 @@
 <body>
   <header>
     <div class="wrap">
-      <p class="pill">🛣️ SP ex SS93 • Ponte di Meccadinardo</p>
-      <h1 class="title">RIDATECI IL PONTE DI MECCADINARDO</h1>
-      <p class="subtitle">Dal <span id="date-closure" class="code"></span>, la chiusura immediata disposta dalla Provincia di Potenza crea gravi disagi a famiglie, lavoratori e imprese. Chiediamo <strong>tempi chiari</strong>, un <strong>piano pubblico di intervento</strong> e <strong>aggiornamenti periodici</strong> fino alla riapertura in sicurezza.</p>
+      <p class="pill ok">✅ SP ex SS93 • Ponte di Meccadinardo • RIAPERTO</p>
+      <h1 class="title">IL PONTE DI MECCADINARDO È RIAPERTO</h1>
+      <p class="subtitle">Il ponte sulla <strong>SP ex SS93 «Appulo Lucana»</strong>, al km 96+950 in agro di Filiano, è stato <strong>riaperto al traffico il <span id="date-reopen" class="code"></span></strong>, dopo <span id="days-closed-inline" class="code"></span> giorni di chiusura e i lavori di consolidamento statico delle arcate. Questa pagina resta online come archivio pubblico della vicenda: cronologia, lavori eseguiti e fonti.</p>
       <div class="cards">
         <div class="card">
+          <div class="kpi ok">RIAPERTO <small>dal <span id="date-reopen-2"></span></small></div>
+          <p class="small">Riapertura al traffico nella mattinata del 29 agosto 2026.</p>
+        </div>
+        <div class="card">
           <div class="kpi"><span id="days-closed">--</span> <small>giorni di chiusura</small></div>
-          <p class="small">Contatore aggiornato automaticamente dalla data di chiusura.</p>
+          <p class="small">Dal <span id="date-closure" class="code"></span> al <span id="date-reopen-3" class="code"></span> — poco più di 10 mesi.</p>
         </div>
         <div class="card">
-          <div class="kpi" id="extra-km">+— km</div>
-          <p class="small">Deviazione media stimata per i collegamenti tra le due sponde.</p>
-        </div>
-        <div class="card">
-          <div class="kpi">#RiapriteIlPonte</div>
-          <p class="small">Usa l'hashtag nelle condivisioni per dare visibilità all'iniziativa.</p>
+          <div class="kpi">185.817 €</div>
+          <p class="small">Importo dell'intervento (spesa finale oltre 173.000 €), fondi MIT — D.M. 125/2022 «fondo ponti».</p>
         </div>
       </div>
       <div class="stack">
-        <a class="btn" id="btn-mail" href="#">Scrivi all'Ufficio Viabilità</a>
-        <a class="btn secondary" id="btn-pec" href="#">Invia PEC al Protocollo</a>
-        <a class="btn secondary" href="#firma">Aderisci / Sostieni</a>
+        <a class="btn ok" href="#cronologia">Leggi la cronologia</a>
+        <a class="btn secondary" href="#lavori">Cosa è stato fatto</a>
+        <a class="btn secondary" href="#chiediamo">Cosa resta da chiedere</a>
       </div>
     </div>
   </header>
 
   <section class="wrap" id="situazione">
+    <div class="banner">
+      <div class="icon">✅</div>
+      <div>
+        <h2>Il ponte è riaperto al traffico</h2>
+        <p>Sabato <strong>29 agosto 2026</strong> la Provincia di Potenza ha riaperto il ponte di Meccadinardo, al km 96+950 della SP ex SS93 «Appulo Lucana». Non è più necessario utilizzare i percorsi alternativi via SS658 o la strada interpoderale. Restano valide, come sempre, le indicazioni della segnaletica in loco.</p>
+      </div>
+    </div>
+
     <div class="two">
       <div>
-        <h2>Situazione attuale</h2>
-        <p class="lead">Sabato scorso sono arrivate segnalazioni dai cittadini; a seguire i tecnici della Provincia hanno eseguito un sopralluogo e la Provincia di Potenza ha disposto <strong>la chiusura immediata del ponte di Meccadinardo</strong> sulla <strong>SP ex SS93</strong>. Questa pagina raccoglie informazioni, impatti e una richiesta civica: <em>trasparenza, tempi e aggiornamenti</em>.</p>
+        <h2 id="cronologia">Cronologia della vicenda</h2>
+        <p class="lead">Dalle prime segnalazioni dei cittadini alla riapertura: <strong>309 giorni</strong>, poco più di dieci mesi.</p>
 
         <div class="timeline">
-          <div class="t"><strong>Segnalazioni dei cittadini</strong> ➝ criticità riscontrate sul ponte</div>
-          <div class="t"><strong>Sopralluogo tecnico</strong> ➝ accertamenti della Provincia</div>
-          <div class="t"><strong>Ordinanza di chiusura</strong> ➝ tutela sicurezza</div>
-          <div class="t"><strong>Richiesta pubblica</strong> ➝ piano interventi e comunicazioni periodiche</div>
+          <div class="t done"><span class="when">24 ottobre 2025</span><strong>Chiusura immediata</strong> — dopo le segnalazioni dei cittadini e il sopralluogo dei tecnici, la Provincia di Potenza dispone la chiusura al transito in entrambe le direzioni con <strong>ordinanza n. 48/2025</strong>, per consentire le verifiche tecniche a seguito di anomalie strutturali.</div>
+          <div class="t done"><span class="when">25 ottobre 2025</span><strong>Avviso del Comune di Filiano</strong> — invito a rispettare la segnaletica e a non oltrepassare i divieti.</div>
+          <div class="t done"><span class="when">29 ottobre 2025</span><strong>Nasce l'iniziativa civica</strong> — online questo sito e la petizione su Change.org per chiedere tempi certi, un piano di intervento e aggiornamenti periodici.</div>
+          <div class="t done"><span class="when">3 dicembre 2025</span><strong>La denuncia dei disagi</strong> — il Corpo Forestale Volontario segnala che tutto il traffico è deviato su una strada interpoderale larga 4 metri, con semaforo a senso unico alternato, code continue e attraversamento della frazione Gianturco. Coinvolti Filiano, Castel Lagopesole, Atella e San Fele.</div>
+          <div class="t done"><span class="when">7 maggio 2026</span><strong>Annuncio dei lavori</strong> — la Provincia rende noto l'avvio del cantiere di manutenzione straordinaria e messa in sicurezza. Le indagini con <em>laser scanner</em> avevano rilevato un fuoripiombo di circa <strong>10 centimetri lungo l'arcata di valle</strong>, con rischio di dissesto accelerato in caso di eventi meteo severi.</div>
+          <div class="t done"><span class="when">9 maggio 2026</span><strong>Consegna del cantiere</strong> — importo dell'intervento <strong>185.817,38 €</strong>, finanziato con risorse del Ministero delle Infrastrutture e dei Trasporti (D.M. 125/2022, «fondo ponti»).</div>
+          <div class="t done"><span class="when">29 agosto 2026</span><strong>Riapertura</strong> — conclusi i lavori, il ponte torna percorribile. Spesa complessiva oltre <strong>173.000 €</strong>.</div>
         </div>
-
-        <p class="small">Riferimenti: Ordinanza di chiusura (numero e link quando disponibile), eventuali comunicati dei Comuni interessati.</p>
       </div>
 
       <div>
-        <h2>Mappa e deviazioni</h2>
-        <p class="small">Se la tua rotta è diversa, invia feedback per migliorare la stima.</p>
+        <h2>Dove si trova</h2>
+        <p class="small">SP ex SS93 «Appulo Lucana», km 96+950, località Meccadinardo, agro di Filiano (PZ).</p>
         <div id="map" class="map" role="application" aria-label="Mappa interattiva del ponte di Meccadinardo"></div>
       </div>
     </div>
 
-    <div class="routes-section">
-      <h3 class="routes-title">Percorsi alternativi via SS658 (Dragonetti)</h3>
-      <p class="small">Le tratte suggerite evitano il ponte di Meccadinardo e sfruttano lo svincolo della SS658 a Dragonetti.</p>
-      <div id="routes" class="routes-list" aria-live="polite"></div>
-      <p class="small">Mappa interattiva realizzata con <span class="code">Leaflet.js</span> e dati © OpenStreetMap contributors.</p>
+    <div class="routes-section" id="lavori">
+      <h2>I lavori eseguiti</h2>
+      <p class="lead">Un manufatto in muratura dei <strong>primi del Novecento</strong>, con l'obiettivo dichiarato dalla Provincia di «coniugare la tutela del patrimonio architettonico alla stabilità strutturale».</p>
+      <ul class="works">
+        <li><strong>Consolidamento statico delle arcate in pietra</strong>, con inserimento di piastre di rinforzo in acciaio.</li>
+        <li><strong>Tiranti in acciaio</strong> a collegare i timpani opposti della struttura.</li>
+        <li>Realizzazione di un <strong>«arco armato»</strong> in grado di post-tendere la volta in muratura.</li>
+        <li><strong>Rifacimento della sede stradale</strong> e realizzazione della <strong>nuova segnaletica</strong>.</li>
+      </ul>
+      <p class="small" style="margin-top:14px">Il presidente della Provincia <strong>Christian Giordano</strong> ha dichiarato: «Siamo intervenuti tempestivamente, nel pieno rispetto delle procedure, per restituire un'infrastruttura fondamentale e sicura», sottolineando che per l'adeguamento completo di tutti i ponti provinciali servirebbero «non meno di 400 milioni di euro».</p>
+
+      <details class="archive">
+        <summary>📁 Archivio — percorsi alternativi usati durante la chiusura (non più necessari)</summary>
+        <p class="small">Le tratte qui sotto evitavano il ponte di Meccadinardo sfruttando lo svincolo della SS658 a Dragonetti, con una deviazione media stimata di <span id="extra-km" class="code"></span>. Le lasciamo online solo come memoria storica della vicenda: <strong>dal 29 agosto 2026 il percorso diretto è nuovamente disponibile</strong>.</p>
+        <div id="routes" class="routes-list" aria-live="polite"></div>
+        <p class="small">Mappa interattiva realizzata con <span class="code">Leaflet.js</span> e dati © OpenStreetMap contributors.</p>
+      </details>
     </div>
   </section>
 
   <section class="wrap" id="impatto">
-    <h2>Impatto sulla comunità</h2>
+    <h2>Impatto sulla comunità durante la chiusura</h2>
+    <p class="lead">Le voci raccolte nei 309 giorni in cui il ponte è rimasto chiuso. Le lasciamo pubblicate perché restino a memoria di quanto è costato alla comunità.</p>
     <div class="impact-grid">
       <div class="quote"><p>«Per andare e tornare dal lavoro impiego 20 minuti in più al giorno.»</p><div class="who">– Lavoratrice pendolare</div></div>
       <div class="quote"><p>«Consegne ritardate e costi extra di carburante.»</p><div class="who">– Corriere espresso</div></div>
@@ -141,13 +180,16 @@
   </section>
 
   <section class="wrap" id="chiediamo">
-    <h2>Cosa chiediamo</h2>
+    <h2>Cosa resta da chiedere</h2>
+    <p class="lead">La riapertura chiude l'emergenza, non la questione. Con lo stesso spirito civico con cui abbiamo chiesto tempi certi, continuiamo a chiedere:</p>
     <ul>
-      <li>Pubblicare un <strong>piano di intervento</strong> con fasi e <strong>tempi indicativi</strong>.</li>
-      <li>Istituire un <strong>aggiornamento settimanale</strong> sullo stato (sito, social o albo pretorio).</li>
-      <li>Definire e comunicare <strong>percorsi alternativi ufficiali</strong> con segnaletica provvisoria.</li>
-      <li>Indicare il <strong>RUP</strong> (Responsabile Unico del Procedimento) e i contatti del cantiere.</li>
+      <li>Pubblicare il <strong>collaudo statico</strong> e la relazione finale dell'intervento.</li>
+      <li>Definire un <strong>piano di monitoraggio periodico</strong> del manufatto, con esiti resi pubblici.</li>
+      <li>Inserire il ponte in un <strong>programma di manutenzione ordinaria</strong>, per non tornare a interventi d'emergenza.</li>
+      <li>Estendere la stessa trasparenza agli <strong>altri ponti provinciali</strong> in attesa di adeguamento.</li>
+      <li>Mettere in sicurezza in via definitiva la <strong>viabilità alternativa</strong> (la strada interpoderale usata per dieci mesi), oggi inadeguata a reggere traffico ordinario.</li>
     </ul>
+    <p class="small">Un grazie a chi ha firmato, condiviso e segnalato: la pressione civica ha contribuito a tenere accesa l'attenzione sulla vicenda.</p>
   </section>
 
   <section class="wrap" id="contatti">
@@ -169,26 +211,39 @@
         <p class="small"><a href="https://archivio.provincia.potenza.it/provincia/section.jsp?sec=100103">Christian Giordano</a></p>
       </div>
     </div>
-    <p class="small">Nota: i referenti di progetto (RUP, DL) saranno aggiunti quando pubblicati negli atti.</p>
+    <p class="small">Nota: i nominativi di RUP e Direzione Lavori non risultano ancora pubblicati nei comunicati ufficiali; saranno aggiunti non appena reperibili negli atti della Provincia.</p>
   </section>
 
   <section class="wrap" id="firma">
-    <h2>Aderisci / Sostieni</h2>
-    <p class="lead">Unisci la tua voce. Compila inviaci la tua adesione qui sotto oppure firma la petizione su Change.org.</p>
-    <!-- Opzione 1: Form semplice via mailto. Per raccolte strutturate usa Google Forms/Change.org -->
+    <h2>Grazie a chi ha partecipato</h2>
+    <p class="lead">La petizione «Richiedere la riapertura del ponte di Meccadinardo», aperta il 29 ottobre 2025, ha raccolto <strong>68 firme</strong>. Obiettivo raggiunto: <strong>il ponte è riaperto</strong>. La raccolta resta consultabile come documentazione dell'iniziativa.</p>
     <p>
-      <a class="btn" id="btn-adesione" href="#">Invia la tua adesione</a>
-      <a class="btn secondary" target="_blank" rel="noopener" href="https://www.change.org/ridateci_il_ponte_di_meccadinardo">Vai su Change.org</a>
+      <a class="btn secondary" target="_blank" rel="noopener" href="https://www.change.org/p/richiedere-la-riapertura-del-ponte-di-meccadinardo">Vedi la petizione su Change.org</a>
+      <a class="btn secondary" id="btn-mail" href="#">Scrivi all'Ufficio Viabilità</a>
+      <a class="btn secondary" id="btn-pec" href="#">Invia PEC al Protocollo</a>
     </p>
-    <p class="small">Se preferisci, scrivi a <a href="mailto:comitato.ponte.meccadinardo@iscanet.com">comitato.ponte.meccadinardo@iscanet.com</a></p>
+    <p class="small">Per segnalazioni sul monitoraggio del ponte o su altre criticità della viabilità locale, scrivi a <a href="mailto:comitato.ponte.meccadinardo@iscanet.com">comitato.ponte.meccadinardo@iscanet.com</a> — oppure <a id="btn-adesione" href="#">invia una segnalazione precompilata</a>.</p>
   </section>
 
   <section class="wrap" id="aggiornamenti">
     <h2>Aggiornamenti</h2>
     <ul id="updates"></ul>
+
+    <h3 style="margin-top:24px;font-size:18px">Fonti</h3>
+    <ul class="sources">
+      <li><a target="_blank" rel="noopener" href="https://ufficiostampabasilicata.it/2026/08/29/riaperto-il-ponte-di-meccadinardo-sulla-strada-provinciale-ex-ss-93-appulo-lucana-in-agro-di-filiano/">Provincia di Potenza / Ufficio Stampa Basilicata — «Riaperto il ponte di Meccadinardo» (29 agosto 2026)</a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.quotidianodelsud.it/basilicata/potenza/cronache/infrastrutture/2026/08/30/filiano-riaperto-il-ponte-di-meccadinardo">Il Quotidiano del Sud — «Filiano, riaperto il ponte di Meccadinardo» (30 agosto 2026)</a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.sassilive.it/cronaca/pubblica-utilita/riapre-il-ponte-di-meccadinardo-completati-i-lavori-di-messa-in-sicurezza/">SassiLive — «Riapre il Ponte di Meccadinardo: completati i lavori di messa in sicurezza»</a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.vulturenews.net/filiano-riapre-questo-ponte-gli-interventi-effettua/">VultureNews — «Filiano: riapre questo Ponte. Gli interventi effettuati»</a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.ansa.it/basilicata/notizie/2026/05/07/a-filiano-via-ai-lavori-per-il-meccadinardo-un-ponte-di-inizio-novecento_40362e44-438b-4355-9c89-332a9c841978.html">ANSA Basilicata — «A Filiano via ai lavori per il Meccadinardo, un ponte di inizio Novecento» (7 maggio 2026)</a></li>
+      <li><a target="_blank" rel="noopener" href="https://ufficiostampabasilicata.it/2026/05/09/al-via-i-lavori-di-manutenzione-straordinaria-e-messa-in-sicurezza-del-ponte-meccadinardo-in-agro-di-filiano/">Provincia di Potenza / Ufficio Stampa Basilicata — «Al via i lavori di manutenzione straordinaria» (9 maggio 2026)</a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.basilicata24.it/2025/12/filiano-disagi-dopo-la-chiusura-del-ponte-di-meccadinardo-154537/">Basilicata24 — «Filiano, disagi dopo la chiusura del ponte di Meccadinardo» (3 dicembre 2025)</a></li>
+      <li><a target="_blank" rel="noopener" href="https://www.vulturenews.net/filiano-chiusura-immediata-al-transito-di-questo-ponte-lavviso/">VultureNews — «Filiano: chiusura immediata al transito» / ordinanza n. 48/2025 (25 ottobre 2025)</a></li>
+    </ul>
   </section>
 
   <footer class="wrap">
+    <p class="small">Ponte riaperto il 29 agosto 2026. Questa pagina resta online come archivio pubblico della vicenda e per il monitoraggio successivo.</p>
     <p class="small">Sito civico senza fini di lucro. Dati personali: evita di inviare informazioni sensibili. © <span id="year"></span> Comitato cittadino spontaneo per il Ponte di Meccadinardo.</p>
   </footer>
 
@@ -199,12 +254,13 @@
   ></script>
   <script>
     // === CONFIGURAZIONE RAPIDA ===
-    // 1) Imposta qui la data di chiusura (ISO YYYY-MM-DD)
-    const CLOSURE_DATE = '2025-10-24';
+    // 1) Date chiave (ISO YYYY-MM-DD)
+    const CLOSURE_DATE = '2025-10-24';   // ordinanza Provincia di Potenza n. 48/2025
+    const REOPEN_DATE  = '2026-08-29';   // riapertura al traffico
 
-    // 2) Stima deviazione media in km (modifica secondo i percorsi locali)
+    // 2) Stima deviazione media in km durante la chiusura (dato storico)
     const EST_EXTRA_KM = 5;
-    
+
     // 3) Geografia (se vuoi usarla in futuro per calcoli o per Leaflet)
     const BRIDGE_COORDS = { lat: 40.810472, lon: 15.719196 };
 
@@ -317,22 +373,40 @@
 
     // 5) Aggiornamenti (mostrati in ordine inverso)
     const UPDATES = [
+      { date: '2026-08-29', text: '<strong>IL PONTE È RIAPERTO.</strong> Nella mattinata la Provincia di Potenza riapre al traffico il ponte di Meccadinardo dopo 309 giorni di chiusura. Spesa complessiva oltre 173.000 €.' },
+      { date: '2026-05-09', text: 'Consegnato il cantiere: manutenzione straordinaria e messa in sicurezza per 185.817,38 €, con fondi MIT del D.M. 125/2022 («fondo ponti»).' },
+      { date: '2026-05-07', text: 'La Provincia annuncia l\'avvio dei lavori. Le indagini con laser scanner avevano rilevato un fuoripiombo di circa 10 cm lungo l\'arcata di valle.' },
+      { date: '2025-12-03', text: 'Il Corpo Forestale Volontario denuncia i disagi: traffico deviato su una interpoderale larga 4 metri, senso unico alternato e code, con attraversamento della frazione Gianturco.' },
       { date: '2025-10-29', text: 'Online la raccolta firme su Change.org.' },
       { date: '2025-10-29', text: 'Online il sito civico. Raccolta adesioni aperta.' },
-      { date: '2025-10-24', text: 'Ordinanza di chiusura del ponte di Meccadinardo (in attesa del numero ufficiale).' }
+      { date: '2025-10-25', text: 'Avviso del Comune di Filiano: rispettare la segnaletica e non oltrepassare i divieti.' },
+      { date: '2025-10-24', text: 'Ordinanza n. 48/2025 della Provincia di Potenza: chiusura immediata al transito in entrambe le direzioni.' }
     ];
 
     // === LOGICA PAGINA ===
     const fmt = (d)=> new Date(d).toLocaleDateString('it-IT', { day:'2-digit', month:'long', year:'numeric' });
 
+    const setText = (id, value)=>{
+      const el = document.getElementById(id);
+      if(el) el.textContent = value;
+    };
+
+    // Il ponte è riaperto: il contatore è ora un dato storico, congelato
+    // tra la data di chiusura e quella di riapertura.
+    function closedDays(){
+      const ms = new Date(REOPEN_DATE) - new Date(CLOSURE_DATE);
+      return Math.max(0, Math.round(ms / (1000*60*60*24)));
+    }
+
     function updateCounters(){
-      const start = new Date(CLOSURE_DATE);
-      const now = new Date();
-      const ms = now - start;
-      const days = Math.max(0, Math.floor(ms / (1000*60*60*24)));
-      document.getElementById('days-closed').textContent = days.toString();
-      document.getElementById('date-closure').textContent = fmt(CLOSURE_DATE);
-      document.getElementById('extra-km').textContent = `+${EST_EXTRA_KM} km`;
+      const days = closedDays();
+      setText('days-closed', days.toString());
+      setText('days-closed-inline', days.toString());
+      setText('date-closure', fmt(CLOSURE_DATE));
+      setText('date-reopen', fmt(REOPEN_DATE));
+      setText('date-reopen-2', fmt(REOPEN_DATE));
+      setText('date-reopen-3', fmt(REOPEN_DATE));
+      setText('extra-km', `+${EST_EXTRA_KM} km`);
     }
 
     function renderUpdates(){
@@ -345,34 +419,42 @@
       });
     }
 
+    function setHref(id, href){
+      const el = document.getElementById(id);
+      if(el) el.href = href;
+    }
+
     function buildMailto(){
-      const subj = encodeURIComponent('Ponte di Meccadinardo – richiesta tempi e aggiornamenti pubblici');
+      const subj = encodeURIComponent('Ponte di Meccadinardo – collaudo, monitoraggio e manutenzione dopo la riapertura');
       const body = encodeURIComponent(
 `Gentile Ufficio Viabilità della Provincia di Potenza,
 
-in qualità di cittadina/o chiedo cortesemente di conoscere:
-1) le fasi e i tempi indicativi per il ripristino della sicurezza del ponte di Meccadinardo (SP ex SS93),
-2) la modalità con cui saranno pubblicati aggiornamenti periodici e percorsi alternativi ufficiali.
+anzitutto un ringraziamento per la riapertura del ponte di Meccadinardo (SP ex SS93, km 96+950), avvenuta il ${fmt(REOPEN_DATE)} dopo ${closedDays()} giorni di chiusura.
 
-La chiusura, disposta in data ${fmt(CLOSURE_DATE)}, incide in modo rilevante su famiglie, lavoratori e imprese. Vi chiediamo trasparenza e comunicazione programmata.
+In qualità di cittadina/o chiedo cortesemente di conoscere:
+1) gli esiti del collaudo statico e la relazione finale dell'intervento,
+2) il piano di monitoraggio periodico previsto per il manufatto e le modalità di pubblicazione degli esiti,
+3) l'inserimento del ponte in un programma di manutenzione ordinaria, per evitare in futuro interventi in emergenza.
+
+Vi chiediamo di mantenere la stessa trasparenza anche sugli altri ponti provinciali in attesa di adeguamento.
 
 Cordiali saluti,
 [Nome Cognome]
 [Comune]
 `);
-      document.getElementById('btn-mail').href = `mailto:${EMAIL_UFFICIO}${CC_POLITICO?('%2C'+CC_POLITICO):''}?subject=${subj}&body=${body}`;
-      document.getElementById('btn-pec').href = `mailto:${EMAIL_PEC}?subject=${subj}&body=${body}`;
+      setHref('btn-mail', `mailto:${EMAIL_UFFICIO}${CC_POLITICO?('%2C'+CC_POLITICO):''}?subject=${subj}&body=${body}`);
+      setHref('btn-pec', `mailto:${EMAIL_PEC}?subject=${subj}&body=${body}`);
 
-      const subj2 = encodeURIComponent('Adesione iniziativa civica – Ponte di Meccadinardo');
+      const subj2 = encodeURIComponent('Segnalazione – Ponte di Meccadinardo e viabilità locale');
       const body2 = encodeURIComponent(
-`Aderisco all'iniziativa civica per chiedere tempi chiari e aggiornamenti sulla riapertura del ponte di Meccadinardo.
+`Segnalo quanto segue in merito al ponte di Meccadinardo o alla viabilità locale collegata.
 
 Nome Cognome:
 Comune:
 Contatto (facoltativo):
-Note:
+Segnalazione:
 `);
-      document.getElementById('btn-adesione').href = `mailto:comitato.ponte.meccadinardo@iscanet.com?subject=${subj2}&body=${body2}`;
+      setHref('btn-adesione', `mailto:comitato.ponte.meccadinardo@iscanet.com?subject=${subj2}&body=${body2}`);
     }
 
     let MAP_INSTANCE;
@@ -413,13 +495,15 @@ Note:
       const featureGroup = L.featureGroup().addTo(MAP_INSTANCE);
 
       L.marker([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon]).addTo(MAP_INSTANCE).bindPopup(
-        '<strong>Ponte di Meccadinardo</strong><br />SP ex SS93'
-      );
+        '<strong>Ponte di Meccadinardo</strong><br />SP ex SS93 – km 96+950<br /><strong style="color:#0a7a42">✅ Riaperto il 29 agosto 2026</strong>'
+      ).openPopup();
 
+      // I percorsi alternativi restano tracciati come archivio storico: attenuati,
+      // perché dalla riapertura non sono più la via consigliata.
       ROUTES.forEach(route=>{
-        route.layerOptions = { color: route.color, weight: 5, opacity: .85 };
+        route.layerOptions = { color: route.color, weight: 4, opacity: .35, dashArray: '6 8' };
         route.layer = L.polyline(route.path, { ...route.layerOptions, lineJoin:'round', lineCap:'round' }).addTo(MAP_INSTANCE);
-        route.layer.bindPopup(`<strong>${route.name}</strong><br />Percorso alternativo tramite SS658 a Dragonetti.`);
+        route.layer.bindPopup(`<strong>${route.name}</strong><br />Percorso alternativo usato durante la chiusura (SS658 a Dragonetti).<br /><em>Non più necessario dal 29 agosto 2026.</em>`);
         featureGroup.addLayer(route.layer);
 
         route.markers = route.keyStops.map((stop, index)=>{
@@ -427,8 +511,9 @@ Note:
             radius: index === 1 ? 7 : 5,
             color: route.color,
             weight: 2,
+            opacity: .5,
             fillColor: route.color,
-            fillOpacity: index === 1 ? 0.9 : 0.7
+            fillOpacity: index === 1 ? 0.45 : 0.3
           }).addTo(MAP_INSTANCE);
           marker.bindTooltip(stop.label, { direction: 'top', offset: [0, -8] });
           featureGroup.addLayer(marker);
@@ -436,7 +521,9 @@ Note:
         });
       });
 
-      MAP_INSTANCE.fitBounds(featureGroup.getBounds().pad(0.2));
+      // Ora che il ponte è riaperto la mappa si centra sul manufatto,
+      // non più sull'estensione dei percorsi alternativi.
+      MAP_INSTANCE.setView([BRIDGE_COORDS.lat, BRIDGE_COORDS.lon], 14);
 
       L.control.attribution({ prefix: false }).addTo(MAP_INSTANCE);
     }
@@ -454,7 +541,7 @@ Note:
         card.innerHTML = `
           <header>
             <h3>${route.name}</h3>
-            <span class="badge">SS658 • Dragonetti</span>
+            <span class="badge">Archivio • SS658 Dragonetti</span>
           </header>
           <p>${route.summary}</p>
           <ul>${route.instructions.map(step=>`<li>${step}</li>`).join('')}</ul>
